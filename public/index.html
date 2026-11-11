@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101a2c">
+
+  <title>VACANTE | Smart Classroom Monitoring</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <header class="topbar">
+      <a class="brand" href="#">
+        <span class="brand-mark">V</span>
+        <span>
+          VACANTE
+          <small>SMART CLASSROOM</small>
+        </span>
+      </a>
+
+      <div class="top-meta">
+        <span class="live-dot"></span>
+        <span id="connection-label">Connecting...</span>
+        <span class="date-chip" id="today-label">Today</span>
+      </div>
+    </header>
+
+    <main>
+
+      <section class="intro">
+        <div>
+          <p class="eyebrow">CAMPUS SPACE MONITORING</p>
+
+          <h1>
+            Find an available
+            <br>
+            <span>classroom, faster.</span>
+          </h1>
+
+          <p class="intro-copy">
+            Real-time classroom occupancy monitoring using
+            ESP32 and PIR motion sensing, alongside the daily
+            class schedule. The sensor monitors the room
+            throughout the day, even when classes are canceled.
+          </p>
+        </div>
+
+        <div class="clock-card">
+          <span>LOCAL TIME</span>
+          <strong id="clock">--:--:--</strong>
+          <small>Philippine time / device time</small>
+        </div>
+      </section>
+
+      <section class="summary-grid">
+
+        <article class="room-card">
+          <div class="card-heading">
+            <span class="eyebrow">LIVE CLASSROOM STATUS</span>
+            <span class="sensor-pill" id="sensor-source">
+              SENSOR CHECKING
+            </span>
+          </div>
+
+          <div class="status-row">
+            <div class="status-icon unknown" id="status-icon">···</div>
+
+            <div>
+              <h2 id="status-title">Checking room...</h2>
+              <p id="status-description">
+                Waiting for live PIR sensor data.
+              </p>
+            </div>
+          </div>
+
+          <div class="room-footer">
+            <span>ROOM <b>LAB 204</b></span>
+            <span>DEVICE <b>ESP32 + PIR</b></span>
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <span class="eyebrow">TODAY'S SCHEDULE</span>
+
+          <strong id="class-count">—</strong>
+          <p>scheduled sessions</p>
+
+          <div class="metric-line">
+            <span id="free-count">—</span>
+            <small>open time blocks</small>
+          </div>
+        </article>
+
+      </section>
+
+      <section class="schedule-section">
+
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">ROOM UTILIZATION</p>
+            <h2>Today's schedule</h2>
+          </div>
+
+          <span class="schedule-date" id="schedule-date"></span>
+        </div>
+
+        <div class="schedule-note">
+          <span class="note-dot"></span>
+          The timetable shows scheduled classes, while the PIR
+          sensor independently monitors actual room movement.
+          A scheduled class does not automatically mean the room
+          is occupied.
+        </div>
+
+        <div class="schedule-list" id="schedule-list"></div>
+
+      </section>
+
+      <section class="bottom-grid">
+
+        <article class="info-card">
+          <p class="eyebrow">HOW IT WORKS</p>
+
+          <div class="flow">
+
+            <div>
+              <span>01</span>
+              <b>PIR Sensor</b>
+              <small>Continuously detects movement</small>
+            </div>
+
+            <i>→</i>
+
+            <div>
+              <span>02</span>
+              <b>ESP32 + Blynk</b>
+              <small>Sends occupancy through V0</small>
+            </div>
+
+            <i>→</i>
+
+            <div>
+              <span>03</span>
+              <b>VACANTE</b>
+              <small>Displays live room status</small>
+            </div>
+
+          </div>
+        </article>
+
+        <article class="info-card last-update">
+          <p class="eyebrow">DEVICE INFORMATION</p>
+
+          <div class="detail-row">
+            <span>Data source</span>
+            <b id="data-source">Waiting</b>
+          </div>
+
+          <div class="detail-row">
+            <span>Sensor status</span>
+            <b id="sensor-status">Checking...</b>
+          </div>
+
+          <div class="detail-row">
+            <span>Last checked</span>
+            <b id="last-checked">—</b>
+          </div>
+
+          <div class="detail-row">
+            <span>Refresh interval</span>
+            <b>3 seconds</b>
+          </div>
+
+          <p class="disclaimer">
+            A PIR sensor detects movement, not the actual number
+            of people in a room. No recent motion does not
+            guarantee that the classroom is empty. Occupancy
+            is an estimate based on recent sensor activity.
+          </p>
+        </article>
+
+      </section>
+
+      <section class="demo-panel" id="demo-panel" hidden>
+
+        <div>
+          <b>Demo controls</b>
+          <small>
+            Simulate sensor activity for testing without
+            the physical ESP32.
+          </small>
+        </div>
+
+        <div class="demo-actions">
+          <button
+            class="btn btn-occupied"
+            id="demo-motion"
+            type="button">
+            Simulate movement
+          </button>
+
+          <button
+            class="btn btn-free"
+            id="demo-clear"
+            type="button">
+            Clear movement
+          </button>
+        </div>
+
+      </section>
+
+    </main>
+
+    <footer>
+      VACANTE
+      <span>•</span>
+      SMART CLASSROOM OCCUPANCY SYSTEM
+      <span>•</span>
+      HACKATHON PROTOTYPE
+    </footer>
+
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
